@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Button from './Button.tsx';
+import Timer from './Timer.tsx';
 
 type QuestionCardProps = {
   question: string;

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Button from "./components/Button.tsx";
 import QuestionCard from './components/QuestionCard.tsx';
+import Timer from './components/Timer.tsx';
 
 const questions = [
+  // Dodaj vise pitanja po potrebi, svakako uzimace iz baze
   { question: 'Probno pitanje 1?', options: ['Ne', 'Da', 'Jok', 'Nije'], answer: 'Da' },
   { question: 'Probno pitanje 2?', options: ['Ne', 'Da', 'Jok', 'Nije'], answer: 'Da' },
-  // Dodaj više pitanja po potrebi
+  
 ];
 
 const QuizPage = () => {
@@ -39,6 +40,10 @@ const QuizPage = () => {
         question={question}
         options={options}
         onAnswerSelect={checkAnswer}
+      />
+      <Timer
+        duration={500}
+        onTimeUp={() => console.log("Vreme je isteklo!")}
       />
     </div>
   );
