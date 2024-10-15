@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './HomePage';
 import QuizPage from './QuizPage';
 import ResultsPage from './ResultsPage';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   return (

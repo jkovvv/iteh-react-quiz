@@ -1,18 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Button from "./components/Button.tsx";
+
 const HomePage = () => {
   const navigate = useNavigate();
-
-  const startQuiz = () => {
-    navigate('/quiz');
-  };
-
   return (
-    <div className="home-page">
+    <div>
       <h1>Dobrodosli u kviz!</h1>
       <p>Testirajte svoje znanje!</p>
-      <button onClick={startQuiz}>Zapocni kviz</button>
+      <Button onClick={()=> navigate('/quiz')}>Zapocni kviz!</Button>
     </div>
   );
 };

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Button from "./components/Button.tsx";
+
 const questions = [
   { question: 'Probno pitanje 1?', options: ['Ne', 'Da', 'Jok', 'Nije'], answer: 'Da' },
   { question: 'Probno pitanje 2?', options: ['Ne', 'Da', 'Jok', 'Nije'], answer: 'Da' },
@@ -12,7 +14,7 @@ const QuizPage = () => {
   const [score, setScore] = useState(0);
   const navigate = useNavigate();
 
-  const handleAnswer = (option) => {
+  const checkAnswer = (option) => {
     if (option === questions[currentQuestionIndex].answer) {
       setScore(score + 1);
     }
@@ -30,9 +32,9 @@ const QuizPage = () => {
       <h2>{question}</h2>
       <div>
         {options.map((option, index) => (
-          <button key={index} onClick={() => handleAnswer(option)}>
+          <Button key={index} onClick={() => checkAnswer(option)}>
             {option}
-          </button>
+          </Button>
         ))}
       </div>
     </div>
