@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from "./components/Button.tsx";
+import QuestionCard from './components/QuestionCard.tsx';
 
 const questions = [
   { question: 'Probno pitanje 1?', options: ['Ne', 'Da', 'Jok', 'Nije'], answer: 'Da' },
@@ -21,22 +22,24 @@ const QuizPage = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      navigate('/results', { state: { score } });
+      if (option === questions[currentQuestionIndex].answer) {
+        navigate('/results', { state: { score: score+1 } });
+      }
+      else{
+        navigate('/results', { state: { score } });
+      }
     }
   };
 
   const { question, options } = questions[currentQuestionIndex];
 
   return (
-    <div className="quiz-page">
-      <h2>{question}</h2>
-      <div>
-        {options.map((option, index) => (
-          <Button key={index} onClick={() => checkAnswer(option)}>
-            {option}
-          </Button>
-        ))}
-      </div>
+    <div>
+      <QuestionCard
+        question={question}
+        options={options}
+        onAnswerSelect={checkAnswer}
+      />
     </div>
   );
 };
