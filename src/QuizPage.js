@@ -16,6 +16,12 @@ const QuizPage = () => {
   const [score, setScore] = useState(0);
   const navigate = useNavigate();
 
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const refreshDiv = () => {
+    setRefreshKey((prevKey) => prevKey + 1); // Za ponovo renderovanje diva (zbog timera)
+  };
+
   const checkAnswer = (option) => {
     if (option === questions[currentQuestionIndex].answer) {
       setScore(score + 1);
@@ -30,16 +36,22 @@ const QuizPage = () => {
         navigate('/results', { state: { score } });
       }
     }
+    
   };
+
+  const handleAnswer = () =>{
+    checkAnswer();
+    refreshDiv();
+  }
 
   const { question, options } = questions[currentQuestionIndex];
 
   return (
-    <div>
+    <div key={refreshKey}>
       <QuestionCard
         question={question}
         options={options}
-        onAnswerSelect={checkAnswer}
+        onAnswerSelect={handleAnswer}
       />
       <Timer
         duration={500}
