@@ -5,6 +5,8 @@ import QuizPage from "./QuizPage.tsx";
 import ResultsPage from "./ResultsPage.tsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import "./App.css";
+
 const App = () => {
   return (
     <Router>

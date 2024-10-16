@@ -34,18 +34,22 @@ const HomePage = () => {
     <div className="container mt-5">
       <div className="row">
         <div className="col-md-4">
-          <ul className="list-group">
-            <QuizList
-              items={quizzes}
-              heading="Kvizovi"
-              onSelectItem={onQuizSelect}
-            ></QuizList>
-          </ul>
+          <div className="card">
+            <div className="card-body">
+              <ul className="list-group">
+                <QuizList items={quizzes} onSelectItem={onQuizSelect} />
+              </ul>
+            </div>
+          </div>
         </div>
         <div className="col-md-8 text-center">
-          <h1 className="display-4">Dobrodošli u kviz!</h1>
-          <p className="lead">Testirajte svoje znanje!</p>
-          <Button onClick={() => handleButtonClick()}>Započni kviz!</Button>
+          <div className="card">
+            <div className="card-body">
+              <h1 className="display-4">Dobrodošli u kviz!</h1>
+              <p className="lead">Testirajte svoje znanje!</p>
+              <Button onClick={() => handleButtonClick()}>Započni kviz!</Button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

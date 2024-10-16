@@ -80,17 +80,22 @@ const QuizPage = () => {
   return (
     <div key={refreshKey} className="container mt-5">
       <div className="row justify-content-center">
-        <div className="col-md-6 text-center">
-          <QuestionCard
-            question={question}
-            options={options}
-            onAnswerSelect={handleAnswer}
-          />
-          <Timer
-            ref={timerRef}
-            duration={5000} // 5 sekundi
-            onTimeUp={() => console.log("Vreme je isteklo!")}
-          />
+        <div className="col-md-6">
+          <div className="card">
+            <div className="card-body text-center">
+              <h3 className="card-title">Pitanje {currentQuestionIndex + 1}</h3>
+              <QuestionCard
+                question={question}
+                options={options}
+                onAnswerSelect={handleAnswer}
+              />
+              <Timer
+                ref={timerRef}
+                duration={5000} // 5 sekundi
+                onTimeUp={() => console.log("Vreme je isteklo!")}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>

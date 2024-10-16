@@ -17,7 +17,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
   return (
     <div className="question-card">
       <h2>{question}</h2>
-      <div className="options">
+      <div className="d-grid gap-2">
         {options.map((option, index) => (
           <Button key={index} onClick={() => onAnswerSelect(option)}>
             {option}

@@ -8,7 +8,11 @@ interface Props {
 
 const Button = ({ children, onClick, color = "primary" }: Props) => {
   return (
-    <button className={"btn btn-" + color} onClick={onClick}>
+    <button
+      className={`button btn-${color}`}
+      onClick={onClick}
+      style={{ whiteSpace: "nowrap" }} // Sprečava prelamanje
+    >
       {children}
     </button>
   );
