@@ -1,5 +1,5 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import Button from "./components/Button.tsx";
 
@@ -14,7 +14,7 @@ const ResultsPage = () => {
         <div className="col-md-6 text-center">
           <h1 className="display-4">Tvoj rezultat: {score}</h1>
           <p className="lead">Čestitam!</p>
-          <Button onClick={()=> navigate('/')}>Igraj ponovo!</Button>
+          <Button onClick={() => navigate("/")}>Igraj ponovo!</Button>
         </div>
       </div>
     </div>

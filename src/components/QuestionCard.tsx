@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import Button from './Button.tsx';
-import Timer from './Timer.tsx';
+import Button from "./Button.tsx";
+import Timer from "./Timer.tsx";
 
 type QuestionCardProps = {
   question: string;
@@ -9,15 +9,19 @@ type QuestionCardProps = {
   onAnswerSelect: (option: string) => void;
 };
 
-const QuestionCard: React.FC<QuestionCardProps> = ({ question, options, onAnswerSelect }) => {
+const QuestionCard: React.FC<QuestionCardProps> = ({
+  question,
+  options,
+  onAnswerSelect,
+}) => {
   return (
     <div className="question-card">
       <h2>{question}</h2>
       <div className="options">
         {options.map((option, index) => (
-            <Button key={index} onClick={() => onAnswerSelect(option)}>
-                {option}
-            </Button>  
+          <Button key={index} onClick={() => onAnswerSelect(option)}>
+            {option}
+          </Button>
         ))}
       </div>
     </div>
