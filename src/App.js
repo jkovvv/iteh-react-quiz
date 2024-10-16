@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./HomePage";
-import QuizPage from "./QuizPage";
-import ResultsPage from "./ResultsPage";
+import HomePage from "./HomePage.tsx";
+import QuizPage from "./QuizPage.tsx";
+import ResultsPage from "./ResultsPage.tsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
@@ -18,4 +18,3 @@ const App = () => {
 };
 
 export default App;
-  

@@ -4,28 +4,27 @@ import { useNavigate } from "react-router-dom";
 import Button from "./components/Button.tsx";
 import QuizList from "./components/QuizList.tsx";
 
-// Primer liste kvizova
+//Kvizove ce uzeti iz bekenda kada projekti budu povezani, sada je sve hardkodovano
 const quizzes = [
-  'Geografski kviz',
-  'Istorijski kviz',
-  'Muzicki kviz',
-  'Sportski kviz',
-  'TV kviz',
+  "Geografski kviz",
+  "Istorijski kviz",
+  "Muzicki kviz",
+  "Sportski kviz",
+  "TV kviz",
 ];
 
 const HomePage = () => {
-  const [selectedQuiz, setSelectedQuiz] = useState(null); // State to store the selected quiz
+  const [selectedQuiz, setSelectedQuiz] = useState(null);
   const navigate = useNavigate();
 
   const onQuizSelect = (quizName) => {
-    setSelectedQuiz(quizName); // Update the state with the selected quiz name
+    setSelectedQuiz(quizName);
   };
 
   const handleButtonClick = () => {
     if (selectedQuiz) {
       console.log(`Odabran je: ${selectedQuiz}`);
-      navigate('/quiz')
-      // Optional: navigate to a different route or take some action
+      navigate("/quiz");
     } else {
       console.log("Niste izabrali kviz");
     }
@@ -36,7 +35,11 @@ const HomePage = () => {
       <div className="row">
         <div className="col-md-4">
           <ul className="list-group">
-          <QuizList items= {quizzes} heading="Kvizovi" onSelectItem={onQuizSelect}></QuizList>
+            <QuizList
+              items={quizzes}
+              heading="Kvizovi"
+              onSelectItem={onQuizSelect}
+            ></QuizList>
           </ul>
         </div>
         <div className="col-md-8 text-center">

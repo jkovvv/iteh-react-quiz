@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import QuestionCard from "./components/QuestionCard.tsx";
-import Timer from "./components/Timer.tsx";
+import Timer, { TimerHandle } from "./components/Timer.tsx";
 
 const questions = [
-  // Dodaj vise pitanja po potrebi, svakako uzimace iz baze
   {
     question: "Probno pitanje 1?",
     options: ["Ne", "Da", "Jok", "Nije"],
@@ -36,32 +35,44 @@ const questions = [
 const QuizPage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
+  const [points, setPoints] = useState(0);
+  const [maxPoints, setMaxPoints] = useState(0);
   const navigate = useNavigate();
+  const timerRef = useRef<TimerHandle | null>(null);
 
   const [refreshKey, setRefreshKey] = useState(0);
 
-  const refreshDiv = () => {
-    setRefreshKey((prevKey) => prevKey + 1); // Za ponovo renderovanje diva (zbog timera)
-  };
-
-  const checkAnswer = (option) => {
+  const checkAnswer = (option: string) => {
+    setMaxPoints(maxPoints + 5000);
     if (option === questions[currentQuestionIndex].answer) {
       setScore(score + 1);
+      if (timerRef.current) {
+        setPoints(points + timerRef.current?.getTimeLeft());
+      }
     }
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      if (option === questions[currentQuestionIndex].answer) {
-        navigate("/results", { state: { score: score + 1 } });
-      } else {
-        navigate("/results", { state: { score } });
-      }
+      navigate("/results", {
+        state: {
+          score:
+            score + (option === questions[currentQuestionIndex].answer ? 1 : 0),
+          points:
+            points +
+            (option === questions[currentQuestionIndex].answer &&
+            timerRef.current
+              ? timerRef.current?.getTimeLeft()
+              : 0),
+          maxPoints: maxPoints + 5000,
+        },
+      });
     }
   };
 
-  const handleAnswer = (option) => {
+  const handleAnswer = (option: string) => {
+    console.log(timerRef.current?.getTimeLeft());
+    setRefreshKey((prev) => prev + 1);
     checkAnswer(option);
-    refreshDiv();
   };
 
   const { question, options } = questions[currentQuestionIndex];
@@ -76,7 +87,8 @@ const QuizPage = () => {
             onAnswerSelect={handleAnswer}
           />
           <Timer
-            duration={500}
+            ref={timerRef}
+            duration={5000} // 5 sekundi
             onTimeUp={() => console.log("Vreme je isteklo!")}
           />
         </div>
