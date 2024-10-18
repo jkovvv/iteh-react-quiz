@@ -8,14 +8,24 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 const App = () => {
+  const backgroundStyle = {
+    backgroundImage: "url('/background.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    height: "100vh",
+    margin: 0,
+  };
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/quiz" element={<QuizPage />} />
-        <Route path="/results" element={<ResultsPage />} />
-      </Routes>
-    </Router>
+    <div style={backgroundStyle}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/quiz" element={<QuizPage />} />
+          <Route path="/results" element={<ResultsPage />} />
+        </Routes>
+      </Router>
+    </div>
   );
 };
 
