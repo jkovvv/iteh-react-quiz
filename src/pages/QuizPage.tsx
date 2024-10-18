@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-import QuestionCard from "./components/QuestionCard.tsx";
-import Timer, { TimerHandle } from "./components/Timer.tsx";
+import QuestionCard from "../components/QuestionCard.tsx";
+import Timer, { TimerHandle } from "../components/Timer.tsx";
 
 const questions = [
   {

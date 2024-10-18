@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Button from "./components/Button.tsx";
-import QuizList from "./components/QuizList.tsx";
+import Button from "../components/Button.tsx";
+import QuizList from "../components/QuizList.tsx";
 
 //Kvizove ce uzeti iz bekenda kada projekti budu povezani, sada je sve hardkodovano
 const quizzes = [

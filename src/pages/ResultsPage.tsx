@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import Button from "./components/Button.tsx";
+import Button from "../components/Button.tsx";
 
 const ResultsPage = () => {
   const location = useLocation();

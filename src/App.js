@@ -1,9 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./HomePage.tsx";
-import QuizPage from "./QuizPage.tsx";
-import ResultsPage from "./ResultsPage.tsx";
+import HomePage from "./pages/HomePage.tsx";
+import QuizPage from "./pages/QuizPage.tsx";
+import ResultsPage from "./pages/ResultsPage.tsx";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+import LoginPage from "./pages/LoginPage.tsx";
+import PrivateRoute from "./components/PrivateRoute.tsx";
+import { AuthProvider } from "./context/AuthContext.tsx";
+import Toolbar from "./components/Toolbar.tsx";
 
 import "./App.css";
 
@@ -18,13 +23,38 @@ const App = () => {
 
   return (
     <div style={backgroundStyle}>
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/quiz" element={<QuizPage />} />
-          <Route path="/results" element={<ResultsPage />} />
-        </Routes>
-      </Router>
+      <AuthProvider>
+        <Router>
+          <Toolbar />
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route
+              path="/"
+              element={
+                <PrivateRoute>
+                  <HomePage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/quiz"
+              element={
+                <PrivateRoute>
+                  <QuizPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/results"
+              element={
+                <PrivateRoute>
+                  <ResultsPage />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
+        </Router>
+      </AuthProvider>
     </div>
   );
 };
